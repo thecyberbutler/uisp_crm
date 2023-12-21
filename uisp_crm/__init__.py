@@ -1,6 +1,9 @@
 from urllib.parse import urljoin
+from .clients import Clients
+
 
 import requests
+import random
 
 
 class CRM:
@@ -11,15 +14,12 @@ class CRM:
         self._session = requests.session()
         self._session.headers = {"X-Auth-App-Key": self.api_key}
 
-    def _req(self, method, endpoint, **kwargs):
+        self.clients = Clients(self)
+
+    def req(self, method, endpoint, **kwargs):
         url = urljoin(self.hostname, endpoint)
         response = self._session.request(method, url, **kwargs)
         response.raise_for_status()
         return response.json()
 
-    def get_clients(self):
-        return self._req("GET", "clients")
 
-    def get_client_ids(self):
-        clients = self.get_clients()
-        return [c['id'] for c in clients]
