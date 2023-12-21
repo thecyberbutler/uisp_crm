@@ -3,7 +3,6 @@ from .clients import Clients
 
 
 import requests
-import random
 
 
 class CRM:
