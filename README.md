@@ -18,7 +18,14 @@ pip install uisp-crm
 Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+## Usage
+
+```python
+from uisp_crm import CRM
+
+crm = CRM(hostname="https://YOUR_UISP_CONSOLE", api_key="YOUR_API_KEY")
+clients = crm.clients.get_clients()
+```
 
 ## License
 
